@@ -1,0 +1,171 @@
+/* Background and Layout */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  height: 100vh;
+  background: url('https://i.pinimg.com/736x/5b/10/41/5b10412a9c011b4c7890042e4fd8aa9e.jpg') no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Overlay for glassmorphism effect */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 0;
+}
+
+/* Glass container */
+.container {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 30px 25px;
+  width: 90%;
+  max-width: 320px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  animation: slideUp 1s ease forwards;
+  opacity: 0;
+  color: white;
+  text-align: center;
+}
+
+/* Heading */
+.form-title {
+  margin-bottom: 25px;
+  font-size: 26px;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Input Fields (same width as button) */
+input {
+  width: 100%;
+  padding: 13px 14px;
+  margin: 12px 0;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+input::placeholder {
+  color: #ddd;
+}
+
+input:focus {
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 6px #1172b3;
+}
+
+/* Button */
+.btn {
+  width: 100%;
+  margin-top: 14px;
+  background: linear-gradient(to right, #4579c3, #1a1f72);
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  padding: 13px 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.btn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 20px rgba(79, 121, 235, 0.4);
+}
+
+/* Animations */
+.fade-in {
+  animation: fadeIn 1.5s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.register-link {
+  margin-top: 16px;
+  font-size: 14px;
+  color: #ddd;
+}
+
+.register-link a {
+  color: #778bfa;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.register-link a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+.popup-message {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px);
+  background: rgba(30, 30, 30, 0.95);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 15px;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  pointer-events: none;
+  max-width: 90%;
+  text-align: center;
+}
+
+/* When showing */
+.popup-message.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Color variants */
+.popup-message.success {
+  background: #2ecc71;
+}
+
+.popup-message.error {
+  background: #e74c3c;
+}
+
+.popup-message.info {
+  background: #3498db;
+}

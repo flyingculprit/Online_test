@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <div class="dashboard-container fade-in">
+    <header class="dashboard-header">
+      <h1>Welcome to Test Hub</h1>
+      <p>Select a subject to begin your test</p>
+      
+      <!-- Profile & Logout Buttons -->
+      <div class="header-actions">
+        <button class="profile-btn" onclick="toggleDropdown()">👤 Profile</button>
+        <div id="profile-dropdown" class="profile-dropdown hidden">
+          <p id="user-email">Email</p>
+        </div>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+      </div>
+    </header>
+
+    <section class="subject-grid">
+      <div class="subject-card" onclick="confirmTest('Web Development')">Web Development</div>
+      <div class="subject-card" onclick="confirmTest('Cyber Security')">Cyber Security</div>
+      <div class="subject-card" onclick="confirmTest('Machine Learning')">Machine Learning</div>
+      <div class="subject-card" onclick="confirmTest('Aptitude')">Aptitude</div>
+      <div class="subject-card" onclick="confirmTest('Cloud')">Cloud</div>
+      <div class="subject-card" onclick="confirmTest('Data Structures')">Data Structures</div>
+    </section>
+  </div>
+
+  <!-- Instructions Modal (optional; still included for now) -->
+  <div id="modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+      <h2>📝 Instructions</h2>
+      <ul>
+        <li>Do not leave the test page once started.</li>
+        <li>You cannot skip or go back to previous questions.</li>
+        <li>Once the timer ends, your answers will be auto-submitted.</li>
+        <li>Make sure you are connected to a stable internet.</li>
+        <li>Use a desktop or laptop for the best experience.</li>
+      </ul>
+      <div class="modal-actions">
+        <button id="cancelBtn" class="modal-btn cancel">Cancel</button>
+        <button id="startBtn" class="modal-btn start">Start Test</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let selectedSubject = "";
+
+    function confirmTest(subject) {
+      selectedSubject = subject;
+      document.getElementById("modal").style.display = "flex";
+    }
+
+    document.getElementById("cancelBtn").onclick = () => {
+      document.getElementById("modal").style.display = "none";
+    };
+
+    document.getElementById("startBtn").onclick = () => {
+      window.location.href = `test.html?subject=${encodeURIComponent(selectedSubject)}`;
+    };
+
+    function logout() {
+      localStorage.clear();
+      window.location.href = "login.html";
+    }
+
+    function toggleDropdown() {
+      const dropdown = document.getElementById("profile-dropdown");
+      dropdown.classList.toggle("hidden");
+    }
+
+    // Load email from localStorage
+    window.onload = () => {
+      const email = localStorage.getItem("email");
+      if (email) {
+        document.getElementById("user-email").textContent = email;
+      } else {
+        document.getElementById("user-email").textContent = "Not Logged In";
+      }
+    };
+
+    // Hide dropdown if clicked outside
+    document.addEventListener("click", (e) => {
+      const btn = document.querySelector(".profile-btn");
+      const dropdown = document.getElementById("profile-dropdown");
+      if (!btn.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.classList.add("hidden");
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Test - Online Exam</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/test.css" />
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <!-- START SCREEN -->
+  <div class="container fade-in" id="start-screen">
+    <h2 id="subject-title" class="test-title">Test</h2>
+    <p>Please click the button below to begin the test in fullscreen mode. Do not exit fullscreen once the test begins.</p>
+    <button class="btn" id="startBtn">Begin Test</button>
+  </div>
+
+  <!-- TEST SCREEN -->
+  <div class="container fade-in hidden" id="test-screen">
+    <div id="question-container"></div>
+    <div id="timer">⏱ Time Left: <span id="time">30</span>s</div>
+    <div id="submit-container" class="hidden">
+      <button class="btn" onclick="showResult()">Submit Test</button>
+    </div>
+  </div>
+
+  <script src="js/test.js"></script>
+</body>
+</html>
